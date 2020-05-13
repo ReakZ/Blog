@@ -22,7 +22,9 @@ class PostPage extends React.Component {
   render() {
     const { users,posts,editPost } = this.props;
     
-    const post = posts.find((x) => x.id === this.props.match.params.postId);
+    const post = posts.find((x) => {
+      
+      return x.id === parseInt(this.props.match.params.postId)});
     
 if(!post){
 

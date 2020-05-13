@@ -17,13 +17,13 @@ class UserProfile extends React.Component {
     return (
       <Container>
         <Card style={{marginTop:25}}>
-            <Card.Header>{user.name}</Card.Header>
+            <Card.Header>{user?user.name:''}</Card.Header>
             <Card.Body>           
               <Card.Text>
-              <p><b>Company:</b> {user.company.name}</p>
-              <p><b>Phone:</b> {user.phone}</p>
-              <p><b>Email:</b> {user.email} </p>
-              <p><b>Website:</b> {user.website}</p>
+              <p><b>Company:</b> {user?user.company.name:''}</p>
+              <p><b>Phone:</b> {user?user.phone:''}</p>
+              <p><b>Email:</b> {user?user.email:''} </p>
+              <p><b>Website:</b> {user?user.website:''}</p>
               
               
               </Card.Text>

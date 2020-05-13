@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as actions from "../actions/index";
 import { Field, reduxForm } from "redux-form";
 import { Form, Card } from "react-bootstrap";
-
+import { StyledInput } from "../customCss/style";
 const mapStateToProps = (state) => {
   const { stateUI, comments } = state;
   return {
@@ -51,24 +51,30 @@ class CommentForm extends React.Component {
 
     return (
       <Form onSubmit={this.props.handleSubmit(this.addTask)}>
-        
-          <Form.Label>Текст комментария:</Form.Label>
-        
-        
-          <Field
-            name="text"
-            required
-            component="textarea"
-            type="text"
-            style={{ width: 100+'%' }}
-          />
-     
-       
-         
-          <button type="submit" className="btn btn-primary btn-sm" style={{ marginBottom:15 }}>
-            Опубликовать
-          </button>
-        
+        <Form.Label>Текст комментария:</Form.Label>
+
+        <Field
+          name="text"
+          required
+          component={(props) => {
+            console.log(props);
+
+            return (
+              <StyledInput
+                value={props.input.value}
+                onChange={(param) => props.input.onChange(param.target.value)}
+              />
+            );
+          }}
+        />
+
+        <button
+          type="submit"
+          className="btn btn-primary btn-sm"
+          style={{ marginBottom: 15 }}
+        >
+          Опубликовать
+        </button>
       </Form>
     );
   }
@@ -79,3 +85,8 @@ const CommentFormRedux = connect(mapStateToProps, actionCreators)(CommentForm);
 export default reduxForm({
   form: "newComment",
 })(CommentFormRedux);
+
+// {props =>
+// <StyledInput
+// currentValue={{val: props.value}}
+// thingsChanged={param => props.onChange(param.val)}/>}

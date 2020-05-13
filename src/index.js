@@ -4,7 +4,12 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from './store/index'
+import { fetchUsers, fetchPosts } from "./actions";
 
+
+store.dispatch(fetchUsers());
+
+store.dispatch(fetchPosts());
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
